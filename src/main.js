@@ -1,5 +1,5 @@
-import Directives from '../directivess'
-import Filters from '../filterss'
+import Directives from './directives'
+import Filters from './filters'
 var prefix      = 'sd',
     // Filters     = require('./filters'),
     // Directives  = require('./directives'),
@@ -34,6 +34,7 @@ function Seed (opts) {
         })
     }
 }
+
 
 // clone attributes so they don't change
 function cloneAttributes (attributes) {
@@ -90,9 +91,7 @@ function bindAccessors (seed, key, binding) {
 }
 
 function parseDirective (attr) {
-
     if (attr.name.indexOf(prefix) === -1) return
-
     // parse directive name and argument
     var noprefix = attr.name.slice(prefix.length + 1),
         argIndex = noprefix.indexOf('-'),
@@ -103,7 +102,7 @@ function parseDirective (attr) {
         arg = argIndex === -1
             ? null
             : noprefix.slice(argIndex + 1)
-
+            console.log({noprefix,argIndex,dirname});
     // parse scope variable key and pipe filters
     var exp = attr.value,
         pipeIndex = exp.indexOf('|'),
